@@ -1,9 +1,17 @@
 body {
 	margin: 0;
 }
-
+.img-user{
+	background-image:url('../img/me/IMG_0030.JPG');
+	background-repeat: no-repeat;
+	background-position: center center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
 nav {
-	position: absolute;
+	position: relative;
 	left: 0px;
 	height: 40px;
 	width: 100%;
@@ -21,13 +29,13 @@ nav ul li {
 	float:left;
 }
 nav ul li :hover {
-	color: #15193b;
+	color: #c5c8e4;
 }
 nav ul li a {
 	text-decoration: none;
 	padding: 10px 20px;
 	display: block;
-	color: #FFF;
+	color: #ffffff;
 	/* text-align: center; */
 }
 
