@@ -15,16 +15,29 @@ function Login() {
     e.preventDefault();
     const response = await fnApiLogin(username,password);
     if (response.err) {
-			Swal.fire({ icon: "error",title: "Oops...",text: "Something went wrong!" });
+			Swal.fire({ icon: "error",title: "Error",text: "Something went wrong!" });
     } else {
-			Swal.fire({
-				title: 'Success',
-				icon: "success",
-				timer: 1000
-			}).then(function() {
-        localStorage.setItem('username', username);
-        window.location.href = "/index";
-			})
+			if(response.result.data.code === 200){
+				const res = await fnApiGetUserInfo(response.result.data);
+				if (res.result.statuscode === 200) {
+					const result = res.result.data[0]
+					localStorage.setItem('usercode', response.result.data.usercode);
+					localStorage.setItem('username', response.result.data.username);
+					localStorage.setItem('fullname',result.name + ' ' + result.lastname);
+					localStorage.setItem('accesstoken', response.result.data.accesstoken);
+					Swal.fire({
+						title: 'Success',
+						icon: "success",
+						timer: 1000
+					}).then(function() {
+						window.location.href = "/index";
+					})
+				}
+			
+			}else{
+				Swal.fire({ icon: "error",title: "Error",text:  response.result.data.alert });
+			}
+			
     }
   }
 
@@ -35,8 +48,23 @@ function Login() {
 					'Content-Type': 'application/json',
 				}
 			}
-			const data = {username,password}
-			const response = await axios.post('http://192.168.1.13:8080/api/beautycenter/v1.0/fnDemo', data, config);
+			const data = {username, password, systemid:'90'}
+			const response = await axios.post('http://192.168.3.251:4100/api/mypass/v1.0/fnGetCheckUserLogin', data, config);
+			return (response.data)
+		} catch (error) {
+			return {'err': error.message}
+		}
+	}
+
+	async function fnApiGetUserInfo(req) {
+		try {
+			const config = {
+				headers: {
+					'Content-Type': 'application/json',
+				}
+			}
+			const data = { usercode: req.usercode, usertoken: req.accesstokenuser, type: "mainmenu", systemid:'90' }
+			const response = await axios.post('http://192.168.3.251:4100/api/mytoken/v1.0/fnGetDataUserprofile', data, config);
 			return (response.data)
 		} catch (error) {
 			return {'err': error.message}

@@ -44,10 +44,12 @@ function Nav() {
                 <div href="#" className="flex px-4 py-2 text-sm">
 									<div className="w-full flex flex-row">
 										<div className="flex flex-col me-2">
+											{/* <div className="flex"><img className="w-10 h-10 rounded-md" src='/src/assets/img/me/IMG_0030.JPG' /></div> */}
+											
 											<div className="flex"><img className="w-10 h-10 rounded-md" src='/src/assets/img/me/IMG_0030.JPG' /></div>
 										</div>
 										<div className="flex flex-col" style={{ flex: '1', display: 'flex', flexDirection: 'column' }}>
-											<div className="flex">  {fullname} {username} </div>
+											<div className="flex">  {fullname} </div>
 											<div className="flex"> รหัสพนักงาน : {usercode} </div>
 										</div>
 									</div>

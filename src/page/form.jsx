@@ -13,7 +13,7 @@ function Form() {
         if (response.err) {
           Swal.fire({ icon: "error",title: "Oops...",text: "Something went wrong!" });
         } else {
-          setArrData(response);
+          setArrData(response.result.data);
         }
     };
     fetchData();
@@ -27,7 +27,7 @@ function Form() {
 				}
 			}
 			const data = {}
-			const response = await axios.get('https://jsonplaceholder.typicode.com/users', data, config);
+			const response = await axios.post('http://192.168.110.18:4100/api/hr/v1.0/fnDemo', data, config);
 			return (response.data)
 		} catch (error) {
 			return {'err': error.message}
