@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios';
-import Nav from '../components/nav'
-import TableComponent from '../components/table';
+import Nav from '../components/nav/nav.jsx'
+import TableComponent from '../components/table.jsx';
 import '../assets/css/form.css'
 
 function Form() {

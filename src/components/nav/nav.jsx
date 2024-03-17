@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom';
 import { Menu, Transition } from '@headlessui/react'
 import { useEffect, useState, Fragment } from 'react'
-import '../assets/css/nav.css'
+import '../nav/nav.css'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
